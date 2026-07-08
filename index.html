@@ -1,1 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTRO DE SERVICIO 2/o AGTO</title>
+    <style>
+        body { background-color: black; color: white; font-family: Arial, sans-serif; display: flex; justify-content: center; padding: 20px; }
+        .container { background-color: #333; padding: 20px; border-radius: 15px; border: 2px solid gold; width: 100%; max-width: 400px; }
+        h2 { text-align: center; color: gold; }
+        label { display: block; margin-top: 10px; font-weight: bold; }
+        input, select { width: 100%; padding: 8px; margin-top: 5px; border-radius: 5px; border: none; box-sizing: border-box; }
+        .buttons { margin-top: 20px; display: flex; justify-content: space-between; }
+        button { padding: 10px 15px; border-radius: 5px; border: none; cursor: pointer; font-weight: bold; }
+        #btnGuardar { background-color: gold; color: black; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>REGISTRO DE SERVICIO 2/o AGTO</h2>
+        <form id="miFormulario">
+            <label>Nombre</label> <input type="text" name="nombre" required>
+            <label>Grado</label> <input type="text" name="grado" required>
+            <label>Adscripción</label>
+            <select name="adscripcion">
+                <option>Rural Norte</option><option>Rural Noreste</option>
+                <option>Rural Sur</option><option>Colombia</option>
+                <option>Ares 3</option><option>Lampazos</option>
+                <option>Dr. Coss</option><option>Cadereyta</option>
+            </select>
+            <label>Fecha</label> <input type="date" name="fecha" required>
+            <div class="buttons">
+                <button type="button" onclick="document.getElementById('miFormulario').reset()">Limpiar</button>
+                <button type="button" id="btnGuardar" onclick="enviar()">Guardar</button>
+            </div>
+        </form>
+    </div>
 
+    <script>
+        const url = https://script.google.com/macros/s/AKfycbznxEmJfg2ktXebNNxOK3LR-Bp7MaUcWKvRqbc5JvtuH5pTLZo9_Pq3iUG6xXKGDw4PuA/exec; 
+        function enviar() {
+            let form = document.getElementById('miFormulario');
+            fetch(url, { method: 'POST', body: new FormData(form) })
+            .then(() => { alert('Registro Exitoso'); form.reset(); });
+        }
+    </script>
+</body>
+</html>

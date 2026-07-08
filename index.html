@@ -22,19 +22,19 @@
             <label>Nombre</label> <input type="text" name="nombre" required>
             <label>Número de empl</label> <input type="number" name="numero_de_empl" required>
             <label>Grado</label>
-<select name="grado" required>
-    <option value="" disabled selected>Selecciona tu grado</option>
-    <option>Policia</option>
-    <option>Policia 2</option>
-    <option>Policia 1</option>
-    <option>Suboficial</option>
-    <option>Oficial</option>
-    <option>Subinspector</option>
-    <option>Inspector</option>
-    <option>Inspector General</option>
-    <option>Comisario</option>
-    <option>Comisario General</option>
-</select>
+            <select name="grado" required>
+                <option value="" disabled selected>Selecciona tu grado</option>
+                <option>Policia</option>
+                <option>Policia 2</option>
+                <option>Policia 1</option>
+                <option>Suboficial</option>
+                <option>Oficial</option>
+                <option>Subinspector</option>
+                <option>Inspector</option>
+                <option>Inspector General</option>
+                <option>Comisario</option>
+                <option>Comisario General</option>
+            </select>
             <label>Adscripción</label>
             <select name="adscripcion">
                 <option>Rural Norte</option><option>Rural Noreste</option>
@@ -54,31 +54,31 @@
     <script>
         const url = "https://script.google.com/macros/s/AKfycbyDnoAMF1Oi5s7Hie_OjEyTpKe4iuipeqatAhVAXw97ZtHh2bZaG8oVh3c6uHEoiEe9hg/exec";
 
-function enviar() {
-    const btn = document.getElementById('btnGuardar');
-    btn.disabled = true; // Deshabilita el botón para evitar doble clic
-    btn.innerText = "Enviando...";
+        function enviar() {
+            const btn = document.getElementById('btnGuardar');
+            btn.disabled = true;
+            btn.innerText = "Enviando...";
 
-    let form = document.getElementById('miFormulario');
-    let formData = new FormData(form);
+            let form = document.getElementById('miFormulario');
+            let formData = new FormData(form);
 
-    fetch(url, {
-        method: 'POST',
-        mode: 'no-cors',
-        body: formData
-    })
-    .then(response => {
-        alert('Datos guardados correctamente');
-        form.reset(); // Limpia el formulario
-        btn.disabled = false;
-        btn.innerText = "Guardar";
-    })
-    .catch(error => {
-        alert('Error al guardar: ' + error);
-        btn.disabled = false;
-        btn.innerText = "Guardar";
-    });
-}
+            fetch(url, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: formData
+            })
+            .then(() => {
+                alert('Datos guardados correctamente');
+                form.reset();
+                btn.disabled = false;
+                btn.innerText = "Guardar";
+            })
+            .catch(error => {
+                alert('Error al guardar: ' + error);
+                btn.disabled = false;
+                btn.innerText = "Guardar";
+            });
+        }
     </script>
 </body>
 </html>

@@ -37,12 +37,32 @@
     </div>
 
     <script>
-        const url = https://script.google.com/macros/s/AKfycbznxEmJfg2ktXebNNxOK3LR-Bp7MaUcWKvRqbc5JvtuH5pTLZo9_Pq3iUG6xXKGDw4PuA/exec; 
-        function enviar() {
-            let form = document.getElementById('miFormulario');
-            fetch(url, { method: 'POST', body: new FormData(form) })
-            .then(() => { alert('Registro Exitoso'); form.reset(); });
-        }
+        const url = https://script.google.com/macros/s/AKfycbzuRzbx9AlekfNre4pOw-CLAvT1CVG3aYgPipqTiyDzyjdPsVPlbQkTAYD8CkaTepR0gw/exec;
+
+function enviar() {
+    const btn = document.getElementById('btnGuardar');
+    btn.disabled = true; // Deshabilita el botón para evitar doble clic
+    btn.innerText = "Enviando...";
+
+    let form = document.getElementById('miFormulario');
+    let formData = new FormData(form);
+
+    fetch(url, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        alert('Datos guardados correctamente');
+        form.reset(); // Limpia el formulario
+        btn.disabled = false;
+        btn.innerText = "Guardar";
+    })
+    .catch(error => {
+        alert('Error al guardar: ' + error);
+        btn.disabled = false;
+        btn.innerText = "Guardar";
+    });
+}
     </script>
 </body>
 </html>

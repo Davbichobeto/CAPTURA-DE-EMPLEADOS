@@ -52,38 +52,31 @@
     </div>
 
     <script>
-        const url = "https://script.google.com/macros/s/AKfycbyDnoAMF1Oi5s7Hie_OjEyTpKe4iuipeqatAhVAXw97ZtHh2bZaG8oVh3c6uHEoiEe9hg/exec";
+    const url = "https://script.google.com/macros/s/AKfycbyDnoAMF1Oi5s7Hie_OjEyTpKe4iuipeqatAhVAXw97ZtHh2bZaG8oVh3c6uHEoiEe9hg/exec";
 
-        function enviar() {
-            const btn = document.getElementById('btnGuardar');
-            const form = document.getElementById('miFormulario');
-            
-            // Validación básica para iOS
-            if (!form.checkValidity()) {
-                alert("Por favor, completa todos los campos.");
-                return;
-            }
+    function enviar() {
+        const btn = document.getElementById('btnGuardar');
+        const form = document.getElementById('miFormulario');
+        
+        btn.disabled = true;
+        btn.innerText = "Enviando...";
 
-            btn.disabled = true;
-            btn.innerText = "Enviando...";
-
-            let formData = new FormData(form);
-
-            fetch(url, {
-                method: 'POST',
-                mode: 'no-cors',
-                body: formData
-            })
-            .then(() => {
-                alert('Datos guardados correctamente');
-                form.reset();
-            })
-            .catch(() => alert('Error de conexión. Reintenta.'))
-            .finally(() => {
-                btn.disabled = false;
-                btn.innerText = "Guardar";
-            });
-        }
-    </script>
+        // Usamos XMLHttpRequest, que suele ser más estable en Safari para Sheets
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', url);
+        xhr.onload = function() {
+            alert('Guardado correctamente');
+            form.reset();
+            btn.disabled = false;
+            btn.innerText = "Guardar";
+        };
+        xhr.onerror = function() {
+            alert('Error al conectar con Google.');
+            btn.disabled = false;
+            btn.innerText = "Guardar";
+        };
+        xhr.send(new FormData(form));
+    }
+</script>
 </body>
 </html>
